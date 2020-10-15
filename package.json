@@ -1,0 +1,20 @@
+{
+  "name": "webpack-babel-gulp",
+  "version": "1.0.0",
+  "description": "A minimalistic workflow for building multi page applications",
+  "main": "src/index.js",
+  "scripts": {
+    "build": "gulp"
+  },
+  "keywords": [],
+  "author": "Alexander Merz",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.12.0",
+    "@babel/preset-env": "^7.12.0",
+    "babel-loader": "^8.1.0",
+    "gulp": "^4.0.2",
+    "webpack": "^5.1.1",
+    "webpack-stream": "^6.1.0"
+  }
+}
