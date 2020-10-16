@@ -19,16 +19,16 @@ gulp.task('scss:watch', function () {
     return gulp.watch('src/scss/*.scss', gulp.series(['scss']));
 });
 
-gulp.task('js', function () {
-    return gulp.src('src/js')
+gulp.task('ts', function () {
+    return gulp.src('src/ts')
         .pipe(webpack(require('./webpack.config.js')))
         .pipe(gulp.dest('dist/js'));
 });
 
-gulp.task('js:watch', function () {
-    return gulp.watch('src/ts/*.js', gulp.series(['js']));
+gulp.task('ts:watch', function () {
+    return gulp.watch('src/ts/*.ts', gulp.series(['ts']));
 });
 
-gulp.task('dev', gulp.parallel(['scss:watch', 'js:watch']));
+gulp.task('dev', gulp.parallel(['scss:watch', 'ts:watch']));
 
-gulp.task('build', gulp.parallel(['scss', 'js']));
+gulp.task('build', gulp.parallel(['scss', 'ts']));

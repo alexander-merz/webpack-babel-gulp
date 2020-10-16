@@ -3,7 +3,7 @@ const path = require('path');
 module.exports = {
     mode: 'production',
     entry: {
-        index: './src/js/index.js'
+        index: './src/ts/index.ts'
     },
     output: {
         path: path.resolve(__dirname, 'dist', 'js'),
@@ -11,14 +11,21 @@ module.exports = {
     },
     module: {
         rules: [{
-            test: /\.m?js$/,
+            test: /\.ts$/,
             exclude: /(node_modules|bower_components)/,
-            use: {
-                loader: 'babel-loader',
-                options: {
-                    presets: ['@babel/preset-env']
+            use: [{
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env']
+                    }
+                },
+                {
+                    loader: 'ts-loader'
                 }
-            }
+            ]
         }]
-    }
+    },
+    resolve: {
+        extensions: ['.ts', '.tsx', '.js', '.jsx']
+    },
 };
