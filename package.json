@@ -4,7 +4,8 @@
   "description": "A minimalistic workflow for building multi page applications",
   "main": "src/index.js",
   "scripts": {
-    "build": "gulp"
+    "build": "gulp build",
+    "dev": "gulp dev"
   },
   "keywords": [],
   "author": "Alexander Merz",
@@ -14,6 +15,9 @@
     "@babel/preset-env": "^7.12.0",
     "babel-loader": "^8.1.0",
     "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^7.0.1",
+    "gulp-sass": "^4.1.0",
+    "node-sass": "^4.14.1",
     "webpack": "^5.1.1",
     "webpack-stream": "^6.1.0"
   }
