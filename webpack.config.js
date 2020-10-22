@@ -1,10 +1,9 @@
 const path = require('path');
+const appStructure = require('./app.structure');
 
 module.exports = {
     mode: 'production',
-    entry: {
-        index: './src/ts/index.ts'
-    },
+    entry: appStructure,
     output: {
         path: path.resolve(__dirname, 'dist', 'js'),
         filename: '[name].js'
@@ -14,10 +13,7 @@ module.exports = {
             test: /\.ts$/,
             exclude: /(node_modules|bower_components)/,
             use: [{
-                    loader: 'babel-loader',
-                    options: {
-                        presets: ['@babel/preset-env']
-                    }
+                    loader: 'babel-loader'
                 },
                 {
                     loader: 'ts-loader'
