@@ -1,8 +1,9 @@
-const gulp          = require('gulp');
-const webpack       = require('webpack-stream');
-const sass          = require('gulp-sass');
-const autoprefixer  = require('gulp-autoprefixer');
-sass.compiler       = require('node-sass');
+const gulp              = require('gulp');
+const webpack           = require('webpack-stream');
+const WebpackConfig     = require('./webpack.config.js');
+const sass              = require('gulp-sass');
+const autoprefixer      = require('gulp-autoprefixer');
+sass.compiler           = require('node-sass');
 
 gulp.task('scss', function () {
     return gulp.src('src/scss/*.scss')
@@ -16,19 +17,23 @@ gulp.task('scss', function () {
 });
 
 gulp.task('scss:watch', function () {
-    return gulp.watch('src/scss/*.scss', gulp.series(['scss']));
+    return gulp.watch('src/scss/**/*.scss', gulp.series(['scss']));
 });
 
-gulp.task('ts', function () {
+gulp.task('webpack',  function () {
     return gulp.src('src/ts')
-        .pipe(webpack(require('./webpack.config.js')))
+        .pipe(webpack(WebpackConfig))
         .pipe(gulp.dest('dist/js'));
 });
 
-gulp.task('ts:watch', function () {
-    return gulp.watch('src/ts/*.ts', gulp.series(['ts']));
+gulp.task('webpack:watch', function () {
+    WebpackConfig.mode = 'development';
+    WebpackConfig.watch = true;
+    return gulp.src('src/ts')
+        .pipe(webpack(WebpackConfig))
+        .pipe(gulp.dest('dist/js'));
 });
 
-gulp.task('dev', gulp.parallel(['scss:watch', 'ts:watch']));
+gulp.task('dev', gulp.parallel(['scss:watch', 'webpack:watch']));
 
-gulp.task('build', gulp.parallel(['scss', 'ts']));
+gulp.task('build', gulp.parallel(['scss', 'webpack']));
