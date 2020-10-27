@@ -1,3 +1,3 @@
 module.exports = {
-    MyComponent: './src/ts/components/index.ts'
+	index: './src/ts/index.ts'
 }
